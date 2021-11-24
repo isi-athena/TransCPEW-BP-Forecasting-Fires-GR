@@ -1,0 +1,73 @@
+!-- using https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox -->
+
+<!-- common libraries -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- plugin -->
+<script src="https://www.virtuosoft.eu/code/bootstrap-duallistbox/bootstrap-duallistbox/v3.0.2/jquery.bootstrap-duallistbox.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://www.virtuosoft.eu/code/bootstrap-duallistbox/bootstrap-duallistbox/v3.0.2/bootstrap-duallistbox.css">
+      <form id="demoform" role="form">
+<!-- Demo -->
+<div class="container">
+  <div class="row" style="margin-top: 40px;">
+    <div class="col">
+      
+      <h2> Choose Fire Service </h2>
+      <p><strong>Step 1:</strong> Select from your list of available Fire Services</p>
+      <hr/>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 40px;">
+    <div class="col">
+
+        <select multiple="multiple" size="10" name="duallistbox_demo1[]" title="duallistbox_demo1[]">
+    <option value="Chania">Chania</option>
+    <option value="Rethymno">Rethymno</option>
+    <option value="Heraklio">Heraklio</option>
+    <option value="Lasithi">Lasithi</option>
+
+  </select>
+        <br>
+
+
+    </div>
+  </div>
+</div>
+
+
+      </form>
+<script>
+
+  var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox({
+    nonSelectedListLabel: 'Available Fire Services',
+    selectedListLabel: 'Selected Fire Services',
+    preserveSelectionOnMove: 'moved',
+    moveAllLabel: 'Move all',
+    removeAllLabel: 'Remove all'
+  });
+  
+
+  
+ // $("#demoform").submit(function() {
+  //  alert($('[name="duallistbox_demo1[]"]').val());
+  //  return false;
+ // });
+ </script>
+<script cam-script type="text/form-script">
+	var variableManager = camForm.variableManager;
+    camForm.on('submit', function() {
+    alert($('[name="duallistbox_demo1[]"]').val());
+  //  alert('Submit');
+     variableManager.createVariable({
+        name: 'IssueSignal',
+        type: 'String',
+        value: 'True',
+        isDirty: true
+      });
+
+    });
+
+</script>
