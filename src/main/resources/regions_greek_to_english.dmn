@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_03fpiod" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.10.0">
+  <decision id="Decision_0zqckrs" name="Regions_gr_to_eng">
+    <decisionTable id="DecisionTable_1lemykj" hitPolicy="FIRST">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string" expressionLanguage="javascript">
+          <text>result.region</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="region_eng" typeRef="string" />
+      <output id="OutputClause_1ge1sm0" name="municipalities" typeRef="string" />
+      <rule id="DecisionRule_0h60x0k">
+        <inputEntry id="UnaryTests_19b60ty">
+          <text>"Δυτικής Ελλάδας"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15wdolz">
+          <text>"Western Greece"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0xfch50">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0skgb0z">
+        <inputEntry id="UnaryTests_14lt6mm">
+          <text>"Πελοποννήσου"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g1jxo7">
+          <text>"Peloponnese"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0p29rid">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ye6213">
+        <description></description>
+        <inputEntry id="UnaryTests_1k3ncm9">
+          <text>"Κρήτης"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0om5oze">
+          <text>"Crete"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_06yl381">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19ld8to">
+        <inputEntry id="UnaryTests_06by3nq">
+          <text>"Ιόνιων Νήσων"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pt94ix">
+          <text>"Ionian Islands"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ir4kv9">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kaneo4">
+        <inputEntry id="UnaryTests_0u2u373">
+          <text>"Ανατολικής Μακεδονίας και Θράκης"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0htkpgb">
+          <text>"Eastern Macedonia and Thrace"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ba7d64">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1osodlx">
+        <inputEntry id="UnaryTests_1mjibwi">
+          <text>"Στερεάς Ελλάδας"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09gfjse">
+          <text>"Central Greece"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1q3mvq0">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0e4bg8l">
+        <inputEntry id="UnaryTests_0lgdcds">
+          <text>"Νότιου Αιγαίου"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0e4wkq1">
+          <text>"South Aegean"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1twdfmz">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1uuqqw6">
+        <inputEntry id="UnaryTests_0tpvhi5">
+          <text>"Βόρειου Αιγαίου"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mn92xp">
+          <text>"North Aegean"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1vj972a">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hdhk1g">
+        <inputEntry id="UnaryTests_0ogkj23">
+          <text>"Αττικής"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_018mbxn">
+          <text>"Attica"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0vkzqgn">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kfcfu9">
+        <inputEntry id="UnaryTests_0xvlrtf">
+          <text>"Θεσσαλίας"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wuotzf">
+          <text>"Thessaly"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1jpiyco">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0v03p7o">
+        <inputEntry id="UnaryTests_1au694i">
+          <text>"Δυτικής Μακεδονίας"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_095e9az">
+          <text>"Western Macedonia"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1b0zpnw">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jd51ne">
+        <inputEntry id="UnaryTests_0mbl0rk">
+          <text>"Κεντρικής Μακεδονίας"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_192sy0g">
+          <text>"Central Macedonia"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1tltgye">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gch6kn">
+        <inputEntry id="UnaryTests_123hcuh">
+          <text>"Ηπείρου"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hxbemw">
+          <text>"Epirus"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_10dfixo">
+          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17ufpxc">
+        <inputEntry id="UnaryTests_1gigrjq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1or3ume">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_12cqwqw">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_0zqckrs">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

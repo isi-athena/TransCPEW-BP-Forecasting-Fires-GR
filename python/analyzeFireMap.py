@@ -41,11 +41,12 @@ def getRiskZone(zone_color):
             distance = tmp_distance
             selected_risk_zone = rz
     return selected_risk_zone;
+    
 
 
 def analyzeMap(map):
     # Get zones
-    with open('assets/firezones.json', 'r', encoding="utf-8") as firezonesJsonFile:
+    with open('assets/fireServices.json', 'r', encoding="utf-8") as firezonesJsonFile:
         zones = json.load(firezonesJsonFile)
 
         # Prepare image
@@ -85,24 +86,80 @@ def handle_task(task: ExternalTask) -> TaskResult:
 
     # mark task either complete/failure/bpmnError based on outcome of your business logic
     
-    print("inside Handler")
+    print("inside Handler b2")
 
     map=task.get_variable("map_image")
 
     
-    data=analyzeMap(stringToRGB(map))
+    data=analyzeMap(stringToRGB(map))   
     
     
     fire_services=[]
 
+    zone1=",".join([i['name'] for i in data if i['status']['id:']==1])
+    zone2=",".join([i['name'] for i in data if i['status']['id:']==2])
+    zone3=",".join([i['name'] for i in data if i['status']['id:']==3]) 
+    zone4=",".join([i['name'] for i in data if i['status']['id:']==4])   
+    zone5=",".join([i['name'] for i in data if i['status']['id:']==5])
 
-    fire_services_3=[i['name'] for i in data if i['status']['id:']==3] 
-    fire_services_4=[i['name'] for i in data if i['status']['id:']==4]    
-    fire_services_5=[i['name'] for i in data if i['status']['id:']==5]        
+    zone1=[]
+    zone2=[]
+    zone3=[]
+    zone4=[]
+    zone5=[]
+    
+    codes={"1":[], "2":[], "3":[], "4":[], "5":[]}
+    
+    regions=[]
     
     
+    for i in data:
+        code=str(i['status']['id:']) ## alert
+        found=False
+   
+        for rr in regions:
+          
+            if rr["region"]==i["region"]: #region entry already created
+                if code in rr:
+                    rr[code]+=","
+                    rr[code]+=i["name"]
+                else:
+                    rr[code]=i["name"]
+                found=True
+                break
+        if not found:  #region entry not created
+            regions.append({"region":i["region"], code:i["name"]})
+                
+                
+    
+    
+    
+       # print(str(i['status']['id:']))
+        zone = codes[str(i['status']['id:'])]
+    #    print(zone)
+  
+    
+        
 
-    return task.complete({"fire_services_3":fire_services_3,"fire_services_4":fire_services_4,"fire_services_5":fire_services_5})
+        for z in zone:
+            if z["region"]==i["region"]:
+                z["services"]+=","
+                z["services"]+=i["name"]
+                found=True
+                break
+        if not found:
+            zone.append({"region":i["region"],"services":i["name"]})
+            
+
+    
+    
+    print(regions)
+    
+    
+    
+    return task.complete({"map_results":regions,"zone3":codes["3"],"zone4":codes["4"],"zone5":codes["5"],"zone1":codes["1"],"zone2":codes["2"]})
+
+   # return task.complete({"zone3":codes["3"],"zone4":codes["4"],"zone5":codes["5"],"zone1":codes["1"],"zone2":codes["2"]})
 
 
 if __name__ == '__main__':

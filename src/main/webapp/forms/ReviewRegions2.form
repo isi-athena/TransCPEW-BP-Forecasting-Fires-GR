@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "components": [
+    {
+      "label": "Fire services Zone 3",
+      "type": "textfield",
+      "id": "Field_0ielecc",
+      "key": "fire_services_3"
+    },
+    {
+      "label": "Fire services Zone 4",
+      "type": "textfield",
+      "id": "Field_1uv84pm",
+      "key": "field_111lp6o",
+      "description": "fire_services_4"
+    },
+    {
+      "label": "Fire services Zone 5",
+      "type": "textfield",
+      "id": "Field_0p2666i",
+      "key": "field_1b4m9na",
+      "description": "fire_services_5"
+    },
+    {
+      "label": "Checkbox",
+      "type": "checkbox",
+      "id": "Field_0ysnvlj",
+      "key": "regions_approved"
+    },
+    {
+      "action": "submit",
+      "label": "Button",
+      "type": "button",
+      "id": "Field_1lmj56m",
+      "key": "field_0kcwxk0"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1ievng2"
+}

@@ -19,10 +19,11 @@ public class IssueWarningsDelegate implements JavaDelegate {
 		ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
 		RuntimeService runtimeService=processEngine.getRuntimeService();
 		
-		
-		
+	
+
 		execution.getProcessEngineServices().getRuntimeService()
 		.createMessageCorrelation("SignalIssued")
+		.setVariable("map_results",runtimeService.getVariableTyped(execution.getId(),"res"))
 		.correlateStartMessage();
 		
 

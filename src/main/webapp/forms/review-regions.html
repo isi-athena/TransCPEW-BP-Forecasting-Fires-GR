@@ -1,0 +1,103 @@
+<strong>Do you approve this tweet?</strong>
+
+<form role="form" class="form-horizontal">
+  <div class="control-group" >
+    <label class="control-label">Zone 3</label>
+    <div class="controls" id="zone3">
+
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Zone 4</label>
+    <div class="controls"  id="zone4">
+
+     </div>
+  </div> 
+  <div class="control-group" >
+    <label class="control-label">Zone 5</label>
+    <div class="controls" id="zone5">
+
+    </div> 
+  <div class="control-group">
+    <label class="control-label">Approve?</label>
+    <div class="controls">
+      <input type="checkbox" class="form-control"
+        cam-variable-name="approved"
+        cam-variable-type="Boolean"
+         />
+    </div>
+  </div>
+
+
+   
+</form>
+
+
+<script cam-script type="text/form-script">
+  camForm.on('form-loaded', function() {
+    camForm.variableManager.fetchVariable('zone3');
+    camForm.variableManager.fetchVariable('zone4');
+    camForm.variableManager.fetchVariable('zone5');
+  });
+  camForm.on('variables-fetched', function() {
+    // work with the variable (bind it to the current AngularJS $scope)
+    $scope.zone3_n = camForm.variableManager.variable('zone3').value;
+    var z3=camForm.variableManager.variable('zone3').value;
+    var z4=camForm.variableManager.variable('zone4').value
+    var z5=camForm.variableManager.variable('zone5').value
+
+
+
+    for (const [key, value] of Object.entries( z3)) {
+      var parent= document.getElementById("zone3");
+      var input = document.createElement("input");
+      input.setAttribute('type', 'text');
+      input.setAttribute('class', 'form-control');
+			input.value = value.region;
+      parent.appendChild(input);
+
+      var input_s = document.createElement("input");
+      input_s.setAttribute('type', 'text');
+      input_s.setAttribute('class', 'form-control');
+			input_s.value = value.services;
+      parent.appendChild(input_s);
+
+}
+
+for (const [key, value] of Object.entries( z4)) {
+  var parent= document.getElementById("zone4");
+  var input = document.createElement("input");
+  input.setAttribute('type', 'text');
+  input.setAttribute('class', 'form-control');
+  input.value = value.region;
+  parent.appendChild(input);
+
+  var input_s = document.createElement("input");
+  input_s.setAttribute('type', 'text');
+  input_s.setAttribute('class', 'form-control');
+  input_s.value = value.services;
+  parent.appendChild(input_s);
+
+}
+
+for (const [key, value] of Object.entries( z5)) {
+  var parent= document.getElementById("zone5");
+  var input = document.createElement("input");
+  input.setAttribute('type', 'text');
+  input.setAttribute('class', 'form-control');
+  input.value = value.region;
+  parent.appendChild(input);
+
+  var input_s = document.createElement("input");
+  input_s.setAttribute('type', 'text');
+  input_s.setAttribute('class', 'form-control');
+  input_s.value = value.services;
+  parent.appendChild(input_s);
+
+}
+   
+    
+
+    
+  });
+</script>

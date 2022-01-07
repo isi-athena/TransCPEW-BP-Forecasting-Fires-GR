@@ -39,6 +39,8 @@ public class JavaMailDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		// TODO Auto-generated method stub
 
+		
+		//add smtp propeties
 		java.util.Properties prop=new java.util.Properties();
 		prop.put("mail.smtp.auth", true);
 		prop.put("mail.smtp.starttls.enable", "true");
@@ -52,34 +54,38 @@ public class JavaMailDelegate implements JavaDelegate {
 			}
 		});
 
-
 		ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
 		RuntimeService runtimeService=processEngine.getRuntimeService();
 
 
 
 		//Create message
-		Message message=new MimeMessage(session);	
+		Message message=new MimeMessage(session);
+		
+		//Sent from address
 		message.setFrom(new InternetAddress("chranagno@yahoo.gr"));
 
 		//Get recipients//
 		//java.util.ArrayList<String> recipients=(java.util.ArrayList<String>)execution.getVariable("To");
-		String groupID=EmailRecipientsGroupIDs.VAR_ESKE_GroupID;//(String)execution.getVariable("grouID");
+		//String groupID=EmailRecipientsGroupIDs.GR_ESKE_ORGS;//(String)execution.getVariable("grouID");
+		String groupID=(String)execution.getVariable("Recipients");
 		message.setRecipients(Message.RecipientType.BCC, getRecipientsFromGroup(processEngine, groupID));
 		//		message.setRecipients(
 		//				Message.RecipientType.TO, InternetAddress.parse("chranagno@gmail.com"));
-		message.setSubject("Map Sent");
-
+		
+		
+		//Get subject
+		String subject=(String)execution.getVariable("Subject");
+		message.setSubject(subject);
+		
+		//Get Body
 		String msg=(String)execution.getVariable("Body");
 		MimeBodyPart mimeBodyPart = new MimeBodyPart();
 		mimeBodyPart.setContent(msg, "text/html");
 		Multipart multipart = new MimeMultipart();
-		multipart.addBodyPart(mimeBodyPart);				
-
-
-
-
-
+		multipart.addBodyPart(mimeBodyPart);
+		
+		//Get map
 		FileValue retrievedTypedFileValue=runtimeService.getVariableTyped(execution.getId(),"map");
 		InputStream mapContent=retrievedTypedFileValue.getValue();
 
@@ -109,7 +115,10 @@ public class JavaMailDelegate implements JavaDelegate {
 		message.setContent(multipart);
 
 		//Send message
-		//Transport.send(message);
+		if(execution.getVariable("SendMessage")=="True")
+		{
+			Transport.send(message);
+		}
 
 		new_file.delete();
 
