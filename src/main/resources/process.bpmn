@@ -137,8 +137,6 @@ for(i = 0; i&lt;memberList.length;i++){
 var id = memberList[i].getId();
 jsonValue.prop("values").append(id); 
 }
-
-
 execution.setVariable("memberIdList", jsonValue);</camunda:script>
         </camunda:executionListener>
       </bpmn:extensionElements>
@@ -166,12 +164,19 @@ execution.setVariable("memberIdList", jsonValue);</camunda:script>
       <bpmn:businessRuleTask id="Activity_0ugdqun" name="regions_gre_to_en" camunda:resultVariable="table_result" camunda:decisionRef="Decision_0zqckrs" camunda:mapDecisionResult="singleResult">
         <bpmn:extensionElements>
           <camunda:inputOutput>
-            <camunda:outputParameter name="municipalities">
-              <camunda:script scriptFormat="groovy">table_result.municipalities.split(',') as List</camunda:script>
+            <camunda:outputParameter name="regional_units">
+              <camunda:script scriptFormat="groovy">if(table_result.regional_units)
+{
+    table_result.regional_units.split(',') as List
+}
+</camunda:script>
             </camunda:outputParameter>
-            <camunda:outputParameter name="region_name2">
-              <camunda:script scriptFormat="groovy">table_result.region_eng
-
+            <camunda:outputParameter name="municipalities">
+              <camunda:script scriptFormat="groovy">
+if(table_result.municipalities)
+{
+    table_result.municipalities.split(',') as List
+}
 </camunda:script>
             </camunda:outputParameter>
           </camunda:inputOutput>
@@ -210,8 +215,11 @@ execution.setVariable("region_name",r)
 var reg_eng=execution.getVariable("region_name");
 var mun=execution.getVariable("municipalities");
 
+var reg_units=execution.getVariable("regional_units");
+
 script_output["municipalities"]=mun;
 script_output["region_eng"]=reg_eng;
+script_output["regional_units"]=regional_units
 script_output["organisation"]="CP";
 
 execution.setVariable("new_result",script_output)
@@ -297,11 +305,27 @@ execution.setVariable("new_result",script_output)
       <camunda:executionListener event="start">
         <camunda:script scriptFormat="javascript">var memberList = execution.processEngine.getIdentityService().createUserQuery().memberOfGroup('GrRegCpOfficers').list();
 
+var result =execution.getVariable("result");
+
+var regional_units=result.regional_units;
+
+
 var jsonValue = S('{ "values":[] }');
 var i;
+var j;
+
 for(i = 0; i&lt;memberList.length;i++){
 var id = memberList[i].getId();
+if(id=="ViceRegionalGovernor" &amp;&amp; regional_units)
+{
+for(j = 0; j&lt;regional_units.length;j++){
+id=regional_units[j]+"ViceRegionalGovernor";
+jsonValue.prop("values").append(id);
+}
+}
+else{
 jsonValue.prop("values").append(id); 
+}
 }
 
 
@@ -358,7 +382,7 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:outgoing>Flow_0ngw9cf</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0g9ojdn" messageRef="Message_18dneye" />
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_0m1q643" name="#{result.region_eng}_REG_CP: Check Warning" camunda:assignee="Gr#{result.region_eng}RegionalCP" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
+    <bpmn:userTask id="Activity_0m1q643" name="#{result.region_eng}_REG_CP: Check Warning" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_04mdmr8" label="Region" type="string" defaultValue="#{result.region_eng}" />
@@ -380,17 +404,17 @@ execution.setVariable("departmentIdList", jsonValue);
     <bpmn:sequenceFlow id="Flow_1qcuc5p" sourceRef="Gateway_1xajg61" targetRef="PTask" />
     <bpmn:sequenceFlow id="Flow_1qk2l9u" sourceRef="Gateway_1xajg61" targetRef="Activity_1flvf7g" />
     <bpmn:sequenceFlow id="Flow_0ogie59" sourceRef="Activity_1flvf7g" targetRef="Event_14wcs6j" />
-    <bpmn:userTask id="PTask" name="Enable Fire Service Readiness" camunda:assignee="Gr#{result.region_eng}RegionalCP" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
+    <bpmn:userTask id="PTask" name="Enable Fire Service Readiness" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
       <bpmn:incoming>Flow_1qcuc5p</bpmn:incoming>
       <bpmn:outgoing>Flow_0cmuong</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="PPTask" name="Inform at regional level professionals dealing with the countryside &#10;" camunda:assignee="Gr#{result.region_eng}RegionalCP" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
+    <bpmn:userTask id="PPTask" name="Inform at regional level professionals dealing with the countryside &#10;" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
       <bpmn:incoming>Flow_0r8liiu</bpmn:incoming>
       <bpmn:outgoing>Flow_1pkdo4j</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_19p3qv7" sourceRef="PTask1" targetRef="Event_14wcs6j" />
     <bpmn:sequenceFlow id="Flow_18c7ids" sourceRef="Gateway_1xajg61" targetRef="PTask1" />
-    <bpmn:userTask id="PTask1" name="Ετοιμότητα για αντιμετώπιση εκτ. αναγκών και διαχείριση των συνεπειών" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
+    <bpmn:userTask id="PTask1" name=" Emergency preparedness and response arrangements " camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
       <bpmn:incoming>Flow_18c7ids</bpmn:incoming>
       <bpmn:outgoing>Flow_19p3qv7</bpmn:outgoing>
     </bpmn:userTask>
@@ -402,7 +426,7 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:incoming>Flow_19p3qv7</bpmn:incoming>
       <bpmn:incoming>Flow_0euffaq</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="InformPublicInRegionalLevelTask" name="Inform public in regional level" camunda:assignee="Gr#{result.region_eng}RegionalCP" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
+    <bpmn:userTask id="InformPublicInRegionalLevelTask" name="Inform public in regional level" camunda:candidateGroups="Gr#{result.region_eng}RegionalCP">
       <bpmn:incoming>Flow_1s6i6ia</bpmn:incoming>
       <bpmn:outgoing>Flow_1wjp4f6</bpmn:outgoing>
     </bpmn:userTask>
@@ -469,7 +493,7 @@ execution.setVariable("departmentIdList", jsonValue);
     <bpmn:endEvent id="Event_0oh7wl3">
       <bpmn:incoming>Flow_0is8oks</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_04kkb2m" name="#{result.region_eng}_#{organisation}: Check Warning" camunda:assignee="Gr#{result.region_eng}#{organisation}" camunda:candidateGroups="Gr#{result.region_eng}#{organisation}">
+    <bpmn:userTask id="Activity_04kkb2m" name="#{result.region_eng}_#{organisation}: Check Warning" camunda:candidateGroups="Gr#{result.region_eng}#{organisation}">
       <bpmn:incoming>Flow_01l5nlo</bpmn:incoming>
       <bpmn:outgoing>Flow_0is8oks</bpmn:outgoing>
     </bpmn:userTask>
@@ -482,10 +506,7 @@ execution.setVariable("departmentIdList", jsonValue);
   </bpmn:process>
   <bpmn:message id="Message_0vhjqy5" name="ACTOR_TRANS_EWM_ORGANISATIONS" />
   <bpmn:process id="Second_Level_Officers" isExecutable="true">
-    <bpmn:sequenceFlow id="Flow_0ny6yyq" name="No" sourceRef="Gateway_1448tz7" targetRef="Event_0ky8tjx">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="javascript">organisation=="LOCAL_VICE_COVERNOR(1-4)"</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1fa3wfz" name="Yes" sourceRef="Gateway_1448tz7" targetRef="Activity_03f3ufd">
+    <bpmn:sequenceFlow id="Flow_1fa3wfz" name="Regional Governor?" sourceRef="Gateway_1448tz7" targetRef="Activity_03f3ufd">
       <bpmn:extensionElements>
         <camunda:executionListener event="take">
           <camunda:script scriptFormat="javascript">var memberList = execution.processEngine.getIdentityService().createUserQuery().memberOfGroup('GrRegGovOrganisations').list();
@@ -517,11 +538,20 @@ jsonValue.prop("values").append(id);
       <bpmn:incoming>Flow_1i6sm8z</bpmn:incoming>
       <bpmn:outgoing>Flow_0wo3tcb</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_1448tz7" name="Regional Governor?">
+    <bpmn:exclusiveGateway id="Gateway_1448tz7" name="Check recipient?">
       <bpmn:incoming>Flow_0wo3tcb</bpmn:incoming>
       <bpmn:outgoing>Flow_1fa3wfz</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0ny6yyq</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1d8xznt</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1u1u6tf</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1d8xznt" name="Other" sourceRef="Gateway_1448tz7" targetRef="Event_1baf7ji" />
+    <bpmn:sequenceFlow id="Flow_1u1u6tf" name="Regional Vice Governor?" sourceRef="Gateway_1448tz7" targetRef="Activity_1ckfomo">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="Javascript">organisation=="GrViceRegionalGovernor"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0zpt00x" sourceRef="Activity_1ckfomo" targetRef="Event_0ky8tjx" />
+    <bpmn:endEvent id="Event_19v7mi5">
+      <bpmn:incoming>Flow_0m9igx0</bpmn:incoming>
+    </bpmn:endEvent>
     <bpmn:callActivity id="Activity_03f3ufd" name="#{result.region_eng} Regional Governor Issue Warnings" calledElement="IssueWarning">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${result}" target="result" />
@@ -534,11 +564,16 @@ jsonValue.prop("values").append(id);
       <bpmn:outgoing>Flow_0m9igx0</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="${memberIdList.prop(&#34;values&#34;).elements()}" camunda:elementVariable="organisation" />
     </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1ckfomo" name="#{result.region_eng} Regional Vice Governor of #{unit} Issue Warnings" calledElement="IssueWarning">
+      <bpmn:incoming>Flow_1u1u6tf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zpt00x</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="#{result.regional_units}" camunda:elementVariable="unit" />
+    </bpmn:callActivity>
     <bpmn:endEvent id="Event_0ky8tjx">
-      <bpmn:incoming>Flow_0ny6yyq</bpmn:incoming>
+      <bpmn:incoming>Flow_0zpt00x</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:endEvent id="Event_19v7mi5">
-      <bpmn:incoming>Flow_0m9igx0</bpmn:incoming>
+    <bpmn:endEvent id="Event_1baf7ji">
+      <bpmn:incoming>Flow_1d8xznt</bpmn:incoming>
     </bpmn:endEvent>
   </bpmn:process>
   <bpmn:message id="Message_0zyrk5e" name="SECOND_LEVEL_CP_CENTER_TRANS _DANG_MES_SECOND_LEVEL_OFFICERS" />
@@ -559,8 +594,8 @@ jsonValue.prop("values").append(id);
     <bpmn:endEvent id="Event_06ndr3r">
       <bpmn:incoming>Flow_0g1seh0</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0j4176e" sourceRef="Event_1p6l04b" targetRef="Activity_0olh69l" />
     <bpmn:sequenceFlow id="Flow_0g1seh0" sourceRef="Activity_0olh69l" targetRef="Event_06ndr3r" />
+    <bpmn:sequenceFlow id="Flow_0j4176e" sourceRef="Event_1p6l04b" targetRef="Activity_0olh69l" />
   </bpmn:process>
   <bpmn:message id="Message_0o8xybe" name="2L_CP_CENTER_TRANS _DANG_MES_MEDIA" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -784,6 +819,16 @@ jsonValue.prop("values").append(id);
       <bpmndi:BPMNShape id="Lane_08r1rfl_di" bpmnElement="ReadinessStateLane" isHorizontal="true">
         <dc:Bounds x="209" y="1280" width="1082" height="630" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0euffaq_di" bpmnElement="Flow_0euffaq">
+        <di:waypoint x="850" y="1370" />
+        <di:waypoint x="1240" y="1370" />
+        <di:waypoint x="1240" y="1646" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0u3croq_di" bpmnElement="Flow_0u3croq">
+        <di:waypoint x="576" y="1639" />
+        <di:waypoint x="576" y="1360" />
+        <di:waypoint x="750" y="1360" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18c7ids_di" bpmnElement="Flow_18c7ids">
         <di:waypoint x="601" y="1664" />
         <di:waypoint x="950" y="1664" />
@@ -839,16 +884,6 @@ jsonValue.prop("values").append(id);
       <bpmndi:BPMNEdge id="Flow_0go2ffh_di" bpmnElement="Flow_0go2ffh">
         <di:waypoint x="503" y="1664" />
         <di:waypoint x="551" y="1664" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0u3croq_di" bpmnElement="Flow_0u3croq">
-        <di:waypoint x="576" y="1639" />
-        <di:waypoint x="576" y="1360" />
-        <di:waypoint x="750" y="1360" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0euffaq_di" bpmnElement="Flow_0euffaq">
-        <di:waypoint x="850" y="1370" />
-        <di:waypoint x="1240" y="1370" />
-        <di:waypoint x="1240" y="1646" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Gateway_1xajg61_di" bpmnElement="Gateway_1xajg61">
         <dc:Bounds x="551" y="1639" width="50" height="50" />
@@ -946,36 +981,46 @@ jsonValue.prop("values").append(id);
         <dc:Bounds x="1922" y="1413" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0ezbzwv_di" bpmnElement="Participant_0ezbzwv" isHorizontal="true">
-        <dc:Bounds x="185" y="1960" width="565" height="430" />
+        <dc:Bounds x="185" y="1960" width="655" height="790" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0ny6yyq_di" bpmnElement="Flow_0ny6yyq">
-        <di:waypoint x="490" y="2165" />
-        <di:waypoint x="490" y="2270" />
-        <di:waypoint x="562" y="2270" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="498" y="2177" width="15" height="14" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNEdge id="Flow_0wo3tcb_di" bpmnElement="Flow_0wo3tcb">
+        <di:waypoint x="410" y="2140" />
+        <di:waypoint x="465" y="2140" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1fa3wfz_di" bpmnElement="Flow_1fa3wfz">
-        <di:waypoint x="515" y="2140" />
-        <di:waypoint x="540" y="2140" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="515" y="2148" width="18" height="14" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNEdge id="Flow_0m9igx0_di" bpmnElement="Flow_0m9igx0">
+        <di:waypoint x="730" y="2140" />
+        <di:waypoint x="762" y="2140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1i6sm8z_di" bpmnElement="Flow_1i6sm8z">
         <di:waypoint x="278" y="2140" />
         <di:waypoint x="310" y="2140" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0m9igx0_di" bpmnElement="Flow_0m9igx0">
-        <di:waypoint x="640" y="2140" />
-        <di:waypoint x="656" y="2140" />
-        <di:waypoint x="656" y="2150" />
-        <di:waypoint x="672" y="2150" />
+      <bpmndi:BPMNEdge id="Flow_1fa3wfz_di" bpmnElement="Flow_1fa3wfz">
+        <di:waypoint x="515" y="2140" />
+        <di:waypoint x="630" y="2140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="531" y="2148" width="53" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0wo3tcb_di" bpmnElement="Flow_0wo3tcb">
-        <di:waypoint x="410" y="2140" />
-        <di:waypoint x="465" y="2140" />
+      <bpmndi:BPMNEdge id="Flow_1d8xznt_di" bpmnElement="Flow_1d8xznt">
+        <di:waypoint x="490" y="2165" />
+        <di:waypoint x="490" y="2440" />
+        <di:waypoint x="762" y="2440" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="539" y="2423" width="29" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u1u6tf_di" bpmnElement="Flow_1u1u6tf">
+        <di:waypoint x="490" y="2165" />
+        <di:waypoint x="490" y="2270" />
+        <di:waypoint x="630" y="2270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="524" y="2236" width="68" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zpt00x_di" bpmnElement="Flow_0zpt00x">
+        <di:waypoint x="730" y="2270" />
+        <di:waypoint x="762" y="2270" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_189v6xq_di" bpmnElement="Event_033rd0u">
         <dc:Bounds x="242" y="2122" width="36" height="36" />
@@ -986,37 +1031,43 @@ jsonValue.prop("values").append(id);
       <bpmndi:BPMNShape id="Gateway_1448tz7_di" bpmnElement="Gateway_1448tz7" isMarkerVisible="true">
         <dc:Bounds x="465" y="2115" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="417" y="2116" width="53" height="27" />
+          <dc:Bounds x="403" y="2116" width="83" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19v7mi5_di" bpmnElement="Event_19v7mi5">
+        <dc:Bounds x="762" y="2122" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_03f3ufd_di" bpmnElement="Activity_03f3ufd">
-        <dc:Bounds x="540" y="2100" width="100" height="80" />
+        <dc:Bounds x="630" y="2100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0y7jrxe_di" bpmnElement="Activity_1ckfomo">
+        <dc:Bounds x="630" y="2230" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0ky8tjx_di" bpmnElement="Event_0ky8tjx">
-        <dc:Bounds x="562" y="2252" width="36" height="36" />
+        <dc:Bounds x="762" y="2252" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_19v7mi5_di" bpmnElement="Event_19v7mi5">
-        <dc:Bounds x="672" y="2132" width="36" height="36" />
+      <bpmndi:BPMNShape id="Event_1baf7ji_di" bpmnElement="Event_1baf7ji">
+        <dc:Bounds x="762" y="2422" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0p2ucd3_di" bpmnElement="Participant_0p2ucd3" isHorizontal="true">
-        <dc:Bounds x="770" y="1960" width="600" height="310" />
+        <dc:Bounds x="850" y="1960" width="600" height="310" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0j4176e_di" bpmnElement="Flow_0j4176e">
-        <di:waypoint x="898" y="2140" />
-        <di:waypoint x="990" y="2140" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0g1seh0_di" bpmnElement="Flow_0g1seh0">
-        <di:waypoint x="1090" y="2140" />
-        <di:waypoint x="1232" y="2140" />
+        <di:waypoint x="1170" y="2140" />
+        <di:waypoint x="1312" y="2140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j4176e_di" bpmnElement="Flow_0j4176e">
+        <di:waypoint x="978" y="2140" />
+        <di:waypoint x="1070" y="2140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_0olh69l_di" bpmnElement="Activity_0olh69l">
-        <dc:Bounds x="990" y="2100" width="100" height="80" />
+        <dc:Bounds x="1070" y="2100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0wza2ta_di" bpmnElement="Event_1p6l04b">
-        <dc:Bounds x="862" y="2122" width="36" height="36" />
+        <dc:Bounds x="942" y="2122" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_06ndr3r_di" bpmnElement="Event_06ndr3r">
-        <dc:Bounds x="1232" y="2122" width="36" height="36" />
+        <dc:Bounds x="1312" y="2122" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_050pbr5_di" bpmnElement="TextAnnotation_050pbr5">
         <dc:Bounds x="910" y="80" width="100" height="140" />
@@ -1059,8 +1110,8 @@ jsonValue.prop("values").append(id);
       <bpmndi:BPMNEdge id="Flow_1qzwh0d_di" bpmnElement="Flow_1qzwh0d">
         <di:waypoint x="800" y="1410" />
         <di:waypoint x="800" y="1741" />
-        <di:waypoint x="880" y="1741" />
-        <di:waypoint x="880" y="2122" />
+        <di:waypoint x="960" y="1741" />
+        <di:waypoint x="960" y="2122" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
