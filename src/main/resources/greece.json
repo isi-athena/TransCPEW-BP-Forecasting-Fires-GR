@@ -45,7 +45,8 @@
       },
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"
 	},
     "Western Greece": {
       "regional_units": {
@@ -74,13 +75,16 @@
       },  
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"
     },
     "Attica": {  
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+  },
     "Central Greece": { 
 "regional_units": {},	
 	  
@@ -90,46 +94,64 @@
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  
+	  
+	  
+	  },
     "East Macedonia and Thrace": { 
 "regional_units": {},	
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  
+	  
+	  
+	  
+	  },
     "Epirus": {  
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
     "Ionian Islands": { 
 "regional_units": {},	
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
     "North Aegean": { 
 "regional_units": {},	
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
     "Peloponnese": { 
 "regional_units": {},	
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
     "South Aegean": {  
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
     "Thessaly": {  
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
     "West Macedonia": {  
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"}
+	  "GrRegCpMedia":"GrRegCpMedia",
+	  "GrRegGovOrganisations":"GrRegGovOrganisations"}
   }
 }

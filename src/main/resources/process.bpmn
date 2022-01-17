@@ -190,7 +190,13 @@ execution.getProcessEngineServices().getRuntimeService() 		.createMessageCorrela
     <bpmn:sequenceFlow id="Flow_1fa3wfz" name="Regional Governor?" sourceRef="Gateway_1448tz7" targetRef="Activity_03f3ufd">
       <bpmn:extensionElements>
         <camunda:executionListener event="take">
-          <camunda:script scriptFormat="javascript">var memberList = execution.processEngine.getIdentityService().createUserQuery().memberOfGroup('GrRegGovOrganisations').list();
+          <camunda:script scriptFormat="javascript">var result =execution.getVariable("result");
+
+var _configuration=execution.getVariable("_configuration")
+var list=_configuration.prop("regions").prop(result.region_eng).prop('GrRegCpOfficers').stringValue();
+
+
+var memberList = execution.processEngine.getIdentityService().createUserQuery().memberOfGroup(list).list();
 
 var jsonValue = S('{ "values":[] }');
 var i;
