@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_03fpiod" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.11.1">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_03fpiod" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.10.0">
   <decision id="Decision_0zqckrs" name="Regions_gr_to_eng">
     <decisionTable id="DecisionTable_1lemykj" hitPolicy="FIRST">
       <input id="Input_1">
@@ -8,28 +8,12 @@
         </inputExpression>
       </input>
       <output id="Output_1" name="region_eng" typeRef="string" />
-      <output id="OutputClause_1ge1sm0" name="municipalities" typeRef="string">
-        <outputValues id="UnaryTests_036ct4n">
-          <text>""</text>
-        </outputValues>
-      </output>
-      <output id="OutputClause_0dpv97d" name="regional_units" typeRef="string">
-        <outputValues id="UnaryTests_1xb7dca">
-          <text>""</text>
-        </outputValues>
-      </output>
       <rule id="DecisionRule_0h60x0k">
         <inputEntry id="UnaryTests_19b60ty">
           <text>"Δυτικής Ελλάδας"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_15wdolz">
           <text>"Western Greece"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0xfch50">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1hmna3z">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0skgb0z">
@@ -38,12 +22,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_0g1jxo7">
           <text>"Peloponnese"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0p29rid">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1rkj9t6">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0ye6213">
@@ -54,12 +32,6 @@
         <outputEntry id="LiteralExpression_0om5oze">
           <text>"Crete"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_06yl381">
-          <text>"Agios Nikolaos,Agios Vasileios, Rethymno,Amari,Anogeia,Apokoronas,Archanes-Asterousia,Chania,Elafonisi,Faistos,Gavdos,Gortyn,Heraklion,Hersonissos,Ierapetra,Kantanos-Selino,Kissamos,Lasithi, Plateau,Malevizi,Minoa Pediada,Mylopotamos,Platanias,Rethymno,Sfakia,Sitia,Viannos"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_05qxott">
-          <text>"Chania, Rethymno, Heraklion,Lasithi"</text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_19ld8to">
         <inputEntry id="UnaryTests_06by3nq">
@@ -67,12 +39,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_0pt94ix">
           <text>"Ionian Islands"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0ir4kv9">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0rs75z3">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0kaneo4">
@@ -82,12 +48,6 @@
         <outputEntry id="LiteralExpression_0htkpgb">
           <text>"Eastern Macedonia and Thrace"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1ba7d64">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1k5cko8">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_1osodlx">
         <inputEntry id="UnaryTests_1mjibwi">
@@ -95,12 +55,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_09gfjse">
           <text>"Central Greece"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1q3mvq0">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0hldnhn">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0e4bg8l">
@@ -110,12 +64,6 @@
         <outputEntry id="LiteralExpression_0e4wkq1">
           <text>"South Aegean"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1twdfmz">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0e0pn68">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_1uuqqw6">
         <inputEntry id="UnaryTests_0tpvhi5">
@@ -123,12 +71,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_0mn92xp">
           <text>"North Aegean"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1vj972a">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0gb761y">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1hdhk1g">
@@ -138,12 +80,6 @@
         <outputEntry id="LiteralExpression_018mbxn">
           <text>"Attica"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0vkzqgn">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0qb9x3o">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_1kfcfu9">
         <inputEntry id="UnaryTests_0xvlrtf">
@@ -151,12 +87,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_0wuotzf">
           <text>"Thessaly"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1jpiyco">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1dq55p8">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0v03p7o">
@@ -166,12 +96,6 @@
         <outputEntry id="LiteralExpression_095e9az">
           <text>"Western Macedonia"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1b0zpnw">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0r7pu0k">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_0jd51ne">
         <inputEntry id="UnaryTests_0mbl0rk">
@@ -179,12 +103,6 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_192sy0g">
           <text>"Central Macedonia"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1tltgye">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_018zlg5">
-          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1gch6kn">
@@ -194,24 +112,12 @@
         <outputEntry id="LiteralExpression_1hxbemw">
           <text>"Epirus"</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_10dfixo">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1txh8sn">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_17ufpxc">
         <inputEntry id="UnaryTests_1gigrjq">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1or3ume">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_12cqwqw">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1jxsfsg">
           <text></text>
         </outputEntry>
       </rule>

@@ -163,7 +163,7 @@ def handle_task(task: ExternalTask) -> TaskResult:
 
 
 if __name__ == '__main__':
-   ExternalTaskWorker(worker_id="1", base_url="http://localhost:8080/engine-rest" config=default_config).subscribe("process_map", handle_task)
+   ExternalTaskWorker(worker_id="1", base_url="http://localhost:8080/engine-rest" ,config=default_config).subscribe("process_map", handle_task)
 
 
 

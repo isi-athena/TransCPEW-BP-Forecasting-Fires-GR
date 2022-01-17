@@ -1,0 +1,135 @@
+{
+  "regions": {
+    "Crete": {
+      "regional_units": {
+        "Chania": {
+          "municipalities": [
+            "Apokoronas",
+            "Chania",
+            "Gavdos",
+            "Kantanos-Selino",
+            "Kissamos",
+            "Platanias",
+            "Sfakia"
+          ]
+        },
+        "Rethymno": {
+          "municipalities": [
+            "Mylopotamos",
+            "Rethymno",
+            "Amari",
+            "Agios Vasileios",
+            "Anogeia"
+          ]
+        },
+        "Heraklion": {
+          "municipalities": [
+            "Archanes-Asterousia",
+            "Heraklion",
+            "Hersonissos",
+            "Malevizi",
+            "Faistos",
+            "Gortyna",
+            "Minoa Pediada",
+            "Viannos"
+          ]
+        },
+        "Lasithi": {
+          "municipalities": [
+            "Agios Nikolaos",
+            "Ierapetra",
+            "Sitia",
+            "Oropedio"
+          ]
+        }
+      },
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"
+	},
+    "Western Greece": {
+      "regional_units": {
+        "Achaia": {
+          "municipalities": [
+            "Patra",
+            "Kalavryta",
+            "Erymanthos",
+            "Dytiki Achaia"
+          ]
+        },
+        "Aitoloakarnania": {
+          "municipalities": [
+            "Agrinio",
+            "Amfilochia",
+            "Messolonghi",
+            "Nafpaktia",
+            "Thermo",
+            "Xiromero",
+            "Aktio-Vonitsa"
+          ]
+        },
+        "Ilia": {
+          "municipalities": []
+        }
+      },  
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"
+    },
+    "Attica": {  
+	"regional_units": {},
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "Central Greece": { 
+"regional_units": {},	
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "Central Macedonia": {  
+	"regional_units": {},
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "East Macedonia and Thrace": { 
+"regional_units": {},	
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "Epirus": {  
+	"regional_units": {},
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "Ionian Islands": { 
+"regional_units": {},	
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "North Aegean": { 
+"regional_units": {},	
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "Peloponnese": { 
+"regional_units": {},	
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "South Aegean": {  
+	"regional_units": {},
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "Thessaly": {  
+	"regional_units": {},
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"},
+    "West Macedonia": {  
+	"regional_units": {},
+	  
+	  "GrRegCpOfficers":"GrRegCpOfficers",
+	  "GrRegCpMedia":"GrRegCpMedia"}
+  }
+}
