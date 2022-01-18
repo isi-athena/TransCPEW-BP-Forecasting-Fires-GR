@@ -34,5 +34,23 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/chran/.m2/repository/org/camunda/commons/camunda-commons-typed-values/7.15.0/camunda-commons-typed-values-7.15.0.jar" sourcepath="C:/Users/chran/.m2/repository/org/camunda/commons/camunda-commons-typed-values/7.15.0/camunda-commons-typed-values-7.15.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.camunda.commons"/>
+			<attribute name="maven.artifactId" value="camunda-commons-typed-values"/>
+			<attribute name="maven.version" value="7.15.0"/>
+			<attribute name="maven.scope" value="provided"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/chran/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar" sourcepath="C:/Users/chran/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="commons-io"/>
+			<attribute name="maven.artifactId" value="commons-io"/>
+			<attribute name="maven.version" value="2.6"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -7,6 +7,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,8 +29,12 @@ import org.camunda.bpm.engine.identity.User;
 import org.camunda.bpm.engine.impl.interceptor.Session;
 import org.camunda.bpm.engine.runtime.Execution;
 import org.camunda.bpm.engine.variable.Variables;
+import org.camunda.bpm.engine.variable.value.BytesValue;
 import org.camunda.bpm.engine.variable.value.FileValue;
 import org.camunda.bpm.engine.variable.value.StringValue;
+import org.camunda.bpm.engine.variable.impl.value.*;
+import org.camunda.bpm.engine.variable.impl.value.PrimitiveTypeValueImpl.BytesValueImpl;
+import org.camunda.bpm.engine.variable.type.PrimitiveValueType;
 
 import camundajar.impl.scala.util.Properties;
 
@@ -50,7 +55,7 @@ public class JavaMailDelegate implements JavaDelegate {
 		javax.mail.Session session = javax.mail.Session.getInstance(prop, new javax.mail.Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("chranagno@gmail.com", "pgcEak3CdQVDbhm1");
+				return new PasswordAuthentication("username", "pass");
 			}
 		});
 
@@ -63,7 +68,7 @@ public class JavaMailDelegate implements JavaDelegate {
 		Message message=new MimeMessage(session);
 		
 		//Sent from address
-		message.setFrom(new InternetAddress("chranagno@yahoo.gr"));
+		message.setFrom(new InternetAddress("from_address@gmail.com"));
 
 		//Get recipients//
 		//java.util.ArrayList<String> recipients=(java.util.ArrayList<String>)execution.getVariable("To");
@@ -71,7 +76,7 @@ public class JavaMailDelegate implements JavaDelegate {
 		String groupID=(String)execution.getVariable("Recipients");
 		message.setRecipients(Message.RecipientType.BCC, getRecipientsFromGroup(processEngine, groupID));
 		//		message.setRecipients(
-		//				Message.RecipientType.TO, InternetAddress.parse("chranagno@gmail.com"));
+		//				Message.RecipientType.TO, InternetAddress.parse("email address"));
 		
 		
 		//Get subject
@@ -85,42 +90,63 @@ public class JavaMailDelegate implements JavaDelegate {
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(mimeBodyPart);
 		
+		//PrimitiveTypeValueImpl<BytesValueImpl> map_var=runtimeService.getVariableTyped(execution.getId(),"map");
+		
+		
+		
+		
+		//BytesValueImpl map_value  =map_var.getValue();
+		//PrimitiveValueType  tt=map_value.getType();
+		
+		//System.out.println(map_value.getValue().getClass().toString());
+		
+		//InputStream mapContent = new ByteArrayInputStream(map_value.getValue());
+		
 		//Get map
-		FileValue retrievedTypedFileValue=runtimeService.getVariableTyped(execution.getId(),"map");
-		InputStream mapContent=retrievedTypedFileValue.getValue();
-
-		File new_file = new File("test.jpg");
-
-		String mes="";
-		try(OutputStream outputStream = new FileOutputStream(new_file)){
-			IOUtils.copy(mapContent, outputStream);
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-			mes=e.getMessage();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			mes=e.getMessage();
-		}
-
-		StringValue typedStringValue = Variables.stringValue(mes);
-		runtimeService.setVariable(execution.getId(), "message", typedStringValue);
-
-
-
-
-		//Files.createTempFile(msg, msg, null)
-		MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-		attachmentBodyPart.attachFile(new_file);
-		multipart.addBodyPart(attachmentBodyPart);
-		message.setContent(multipart);
-
-		//Send message
-		if(execution.getVariable("SendMessage")=="True")
-		{
-			Transport.send(message);
-		}
-
-		new_file.delete();
+		//FileValue retrievedTypedFileValue=runtimeService.getVariableTyped(execution.getId(),"map");
+		//InputStream mapContent=retrievedTypedFileValue.getValue();
+		
+		
+		
+		
+		
+		
+		
+//		
+//        InputStream mapContent= new ByteArrayInputStream(null, 0, 0);
+//		File new_file = new File("test.jpg");
+//
+//		String mes="";
+//		try(OutputStream outputStream = new FileOutputStream(new_file)){
+//			
+//			IOUtils.copy(mapContent, outputStream);
+//		} catch (FileNotFoundException e) {
+//			System.out.println(e.getMessage());
+//			mes=e.getMessage();
+//		} catch (IOException e) {
+//			System.out.println(e.getMessage());
+//			mes=e.getMessage();
+//		}
+//
+//		StringValue typedStringValue = Variables.stringValue(mes);
+//		runtimeService.setVariable(execution.getId(), "message", typedStringValue);
+//
+//
+//
+//
+//		//Files.createTempFile(msg, msg, null)
+//		MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+//		attachmentBodyPart.attachFile(new_file);
+//		multipart.addBodyPart(attachmentBodyPart);
+//		message.setContent(multipart);
+//
+//		//Send message
+//		if(execution.getVariable("SendMessage")=="True")
+//		{
+//			Transport.send(message);
+//		}
+//
+//		new_file.delete();
 
 
 	}
