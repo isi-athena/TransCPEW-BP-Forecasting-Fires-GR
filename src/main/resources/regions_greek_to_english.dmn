@@ -113,14 +113,6 @@
           <text>"Epirus"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_17ufpxc">
-        <inputEntry id="UnaryTests_1gigrjq">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1or3ume">
-          <text></text>
-        </outputEntry>
-      </rule>
     </decisionTable>
   </decision>
   <dmndi:DMNDI>
