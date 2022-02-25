@@ -508,7 +508,7 @@ execution.setVariable("memberIdList", jsonValue);</camunda:script>
         <bpmn:outgoing>Flow_05vtbsx</bpmn:outgoing>
       </bpmn:sendTask>
       <bpmn:parallelGateway id="Gateway_1d3p5zr">
-        <bpmn:incoming>Flow_1pvmhta</bpmn:incoming>
+        <bpmn:incoming>Flow_06e6ab2</bpmn:incoming>
         <bpmn:outgoing>Flow_0p1f4g3</bpmn:outgoing>
         <bpmn:outgoing>Flow_0lwdvw8</bpmn:outgoing>
       </bpmn:parallelGateway>
@@ -551,10 +551,10 @@ execution.setVariable("region_name_camelCase",r)
       </bpmn:startEvent>
       <bpmn:sequenceFlow id="Flow_0mbny4y" sourceRef="Event_0jlwgu4" targetRef="Gateway_1qe1wka" />
       <bpmn:sequenceFlow id="Flow_0t8d3hk" sourceRef="Gateway_1qe1wka" targetRef="Event_1w0c48m">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="javascript">!("4" in res)&amp;&amp;!("5" in res)</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="groovy">!(res.containsKey["4"]||res.containsKey["5"])</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_0qujreq" sourceRef="Gateway_1qe1wka" targetRef="Activity_0ugdqun">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="javascript">("4" in res)||("5" in res)</bpmn:conditionExpression>
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="groovy">(res.containsKey["4"]||res.containsKey["5"])</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_1hzd3cp" sourceRef="Gateway_0wyemre" targetRef="Event_0az9ij9" />
       <bpmn:sequenceFlow id="Flow_0p1f4g3" sourceRef="Gateway_1d3p5zr" targetRef="Activity_15z5syk" />
@@ -583,12 +583,7 @@ execution.setVariable("new_result",script_output)
       </bpmn:scriptTask>
       <bpmn:sequenceFlow id="Flow_0lwdvw8" sourceRef="Gateway_1d3p5zr" targetRef="Activity_00w9yi9" />
       <bpmn:sequenceFlow id="Flow_08c11vs" sourceRef="Activity_00w9yi9" targetRef="IssueWarningsForFireServiceTask" />
-      <bpmn:sequenceFlow id="Flow_06e6ab2" sourceRef="Activity_0ugdqun" targetRef="Activity_0pccqw1" />
-      <bpmn:userTask id="Activity_0pccqw1" name="Test">
-        <bpmn:incoming>Flow_06e6ab2</bpmn:incoming>
-        <bpmn:outgoing>Flow_1pvmhta</bpmn:outgoing>
-      </bpmn:userTask>
-      <bpmn:sequenceFlow id="Flow_1pvmhta" sourceRef="Activity_0pccqw1" targetRef="Gateway_1d3p5zr" />
+      <bpmn:sequenceFlow id="Flow_06e6ab2" sourceRef="Activity_0ugdqun" targetRef="Gateway_1d3p5zr" />
     </bpmn:subProcess>
     <bpmn:serviceTask id="ProcessMapTask" name="Process Map" camunda:type="external" camunda:topic="process_map">
       <bpmn:extensionElements>
@@ -1034,6 +1029,12 @@ execution.setVariable("new_result",script_output)
       <bpmndi:BPMNShape id="Activity_0cuwq95_di" bpmnElement="IssueWarningForFireServiceSubProcess" isExpanded="true">
         <dc:Bounds x="920" y="730" width="770" height="490" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_06e6ab2_di" bpmnElement="Flow_06e6ab2">
+        <di:waypoint x="1190" y="870" />
+        <di:waypoint x="1223" y="870" />
+        <di:waypoint x="1223" y="860" />
+        <di:waypoint x="1255" y="860" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08c11vs_di" bpmnElement="Flow_08c11vs">
         <di:waypoint x="1280" y="1010" />
         <di:waypoint x="1315" y="1010" />
@@ -1071,10 +1072,10 @@ execution.setVariable("new_result",script_output)
         <di:waypoint x="1632" y="860" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qujreq_di" bpmnElement="Flow_0qujreq">
-        <di:waypoint x="1040" y="875" />
-        <di:waypoint x="1040" y="853" />
-        <di:waypoint x="1100" y="853" />
-        <di:waypoint x="1100" y="830" />
+        <di:waypoint x="1065" y="900" />
+        <di:waypoint x="1078" y="900" />
+        <di:waypoint x="1078" y="870" />
+        <di:waypoint x="1090" y="870" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0t8d3hk_di" bpmnElement="Flow_0t8d3hk">
         <di:waypoint x="1040" y="925" />
@@ -1084,18 +1085,6 @@ execution.setVariable("new_result",script_output)
       <bpmndi:BPMNEdge id="Flow_0mbny4y_di" bpmnElement="Flow_0mbny4y">
         <di:waypoint x="988" y="900" />
         <di:waypoint x="1015" y="900" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_06e6ab2_di" bpmnElement="Flow_06e6ab2">
-        <di:waypoint x="1100" y="830" />
-        <di:waypoint x="1100" y="845" />
-        <di:waypoint x="1170" y="845" />
-        <di:waypoint x="1170" y="860" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1pvmhta_di" bpmnElement="Flow_1pvmhta">
-        <di:waypoint x="1220" y="900" />
-        <di:waypoint x="1238" y="900" />
-        <di:waypoint x="1238" y="860" />
-        <di:waypoint x="1255" y="860" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1e1sd8h_di" bpmnElement="Activity_1e1sd8h">
         <dc:Bounds x="1490" y="970" width="100" height="80" />
@@ -1108,6 +1097,9 @@ execution.setVariable("new_result",script_output)
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_15nxx0z_di" bpmnElement="Activity_15z5syk">
         <dc:Bounds x="1360" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1fa4fgk_di" bpmnElement="Gateway_1d3p5zr">
+        <dc:Bounds x="1255" y="835" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1w0c48m_di" bpmnElement="Event_1w0c48m">
         <dc:Bounds x="1552" y="1082" width="36" height="36" />
@@ -1124,14 +1116,8 @@ execution.setVariable("new_result",script_output)
       <bpmndi:BPMNShape id="Activity_1eh173v_di" bpmnElement="Activity_00w9yi9">
         <dc:Bounds x="1180" y="970" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1fa4fgk_di" bpmnElement="Gateway_1d3p5zr">
-        <dc:Bounds x="1255" y="835" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0ugdqun_di" bpmnElement="Activity_0ugdqun">
-        <dc:Bounds x="1050" y="750" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1k75v18_di" bpmnElement="Activity_0pccqw1">
-        <dc:Bounds x="1120" y="860" width="100" height="80" />
+        <dc:Bounds x="1090" y="830" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1aqx2eu_di" bpmnElement="ProcessMapTask">
         <dc:Bounds x="450" y="860" width="100" height="80" />
