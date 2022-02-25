@@ -44,9 +44,9 @@
         }
       },
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  "GrRegCpOfficers":[],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]
 	},
     "Western Greece": {
       "regional_units": {
@@ -74,28 +74,28 @@
         }
       },  
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  "GrRegCpOfficers":[],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]
     },
     "Attica": {  
 	"regional_units": {},
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]
   },
     "Central Greece": { 
 "regional_units": {},	
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[]},
     "Central Macedonia": {  
 	"regional_units": {},
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  "GrRegCpOfficers":[],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]
 	  
 	  
 	  
@@ -103,9 +103,9 @@
     "East Macedonia and Thrace": { 
 "regional_units": {},	
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]
 	  
 	  
 	  
@@ -114,44 +114,45 @@
     "Epirus": {  
 	"regional_units": {},
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]},
     "Ionian Islands": { 
 "regional_units": {},	
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]},
     "North Aegean": { 
 "regional_units": {},	
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]},
     "Peloponnese": { 
 "regional_units": {},	
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]},
     "South Aegean": {  
 	"regional_units": {},
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]},
     "Thessaly": {  
 	"regional_units": {},
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"},
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]},
     "West Macedonia": {  
 	"regional_units": {},
 	  
-	  "GrRegCpOfficers":"GrRegCpOfficers",
-	  "GrRegCpMedia":"GrRegCpMedia",
-	  "GrRegGovOrganisations":"GrRegGovOrganisations"}
-  }
+	  "GrRegCpOfficers":["ViceRegionalGovernor"],
+	  "GrRegCpMedia":[],
+	  "GrRegGovOrganisations":[]}
+  },
+  "GrEskeEwsOrgs":["Police","GEETHA", "Ministry"]
 }
