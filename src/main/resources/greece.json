@@ -147,12 +147,21 @@
 	  "GrRegCpOfficers":["ViceRegionalGovernor"],
 	  "GrRegCpMedia":[],
 	  "GrRegGovOrganisations":[]},
-    "West Macedonia": {  
+    "Western Macedonia": {  
 	"regional_units": {},
 	  
 	  "GrRegCpOfficers":["ViceRegionalGovernor"],
 	  "GrRegCpMedia":[],
 	  "GrRegGovOrganisations":[]}
   },
-  "GrEskeEwsOrgs":["Police","GEETHA", "Ministry"]
+  "GrEskeEwsOrgs":["Αστυνομία","ΓΕΕΘΑ", "Υπουργείο Υγείας"],
+  "DecentralizedAdministrations":{
+	  "Attica":["Attica"],
+	  "MacedoniaAndThrace":["Central Macedonia","Thrace"],
+	  "EpirusAndWesternMacedonia":["Epirus","Western Macedonia"],
+	  "ThessalyAndCentralGreece":["Thessaly","Central Greece"],
+	  "PeloponneseWesternGreeceAndIonian":["Peloponnese","Western Greece","Ionian Islands"],
+	  "Aegean":["North Aegean","South Aegean"],
+	  "Crete":["Crete"]
+	  }
 }
