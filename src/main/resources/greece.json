@@ -3,44 +3,62 @@
     "Crete": {
       "regional_units": {
         "Chania": {
-          "municipalities": [
-            "Apokoronas",
-            "Chania",
-            "Gavdos",
-            "Kantanos-Selino",
-            "Kissamos",
-            "Platanias",
-            "Sfakia"
-          ]
+			"fire_services":{
+				"Δασαρχείο Χανίων":{
+					"municipalities":[
+					            "Apokoronas",
+								"Chania",
+								"Gavdos",
+								"Kantanos-Selino",
+								"Kissamos",
+								"Platanias",
+								"Sfakia"					
+					
+					]	
+				}
+			}
         },
         "Rethymno": {
-          "municipalities": [
-            "Mylopotamos",
-            "Rethymno",
-            "Amari",
-            "Agios Vasileios",
-            "Anogeia"
-          ]
+			"fire_services":{
+				"Δασαρχείο Ρεθύμνου":{
+					"municipalities":[
+							   "Mylopotamos",
+								"Rethymno",
+								"Amari",
+								"Agios Vasileios",
+								"Anogeia"					
+										
+					]	
+				}
+			}
         },
         "Heraklion": {
-          "municipalities": [
-            "Archanes-Asterousia",
-            "Heraklion",
-            "Hersonissos",
-            "Malevizi",
-            "Faistos",
-            "Gortyna",
-            "Minoa Pediada",
-            "Viannos"
-          ]
+			"fire_services":{
+				"Δασαρχείο Ηρακλείου":{
+					"municipalities":[
+							"Archanes-Asterousia",
+							"Heraklion",
+							"Hersonissos",
+							"Malevizi",
+							"Faistos",
+							"Gortyna",
+							"Minoa Pediada",
+							"Viannos"
+					]	
+				}
+			}
         },
         "Lasithi": {
-          "municipalities": [
+			"fire_services":{
+				"Δασαρχείο Λασιθίου":{
+					"municipalities":[
             "Agios Nikolaos",
             "Ierapetra",
             "Sitia",
             "Oropedio"
-          ]
+					]	
+				}
+			}
         }
       },
 	  
@@ -50,27 +68,85 @@
 	},
     "Western Greece": {
       "regional_units": {
-        "Achaia": {
-          "municipalities": [
-            "Patra",
-            "Kalavryta",
-            "Erymanthos",
-            "Dytiki Achaia"
-          ]
+        "Achaia":{
+			"fire_services":{
+				"Δασαρχείο Πατρών":{
+					"municipalities":[
+							"Patra",
+
+							"Erymanthos",
+							"Dytiki Achaia"					
+									
+					]	
+				},
+				"Δασαρχείο Καλαβρύτων":{
+					"municipalities":[
+
+								"Kalavryta"
+				
+					
+					]	
+				},
+				"Δασαρχείο Αιγίου":{
+					"municipalities":[
+					            "Aigialeia"								
+					]	
+				}
+			}
         },
         "Aitoloakarnania": {
-          "municipalities": [
-            "Agrinio",
-            "Amfilochia",
-            "Messolonghi",
-            "Nafpaktia",
-            "Thermo",
-            "Xiromero",
-            "Aktio-Vonitsa"
-          ]
+			"fire_services":{
+				"Δασαρχείο Αμφιλοχίας":{
+					"municipalities":[
+							"Amfilochia",
+							"Aktio-Vonitsa",
+							"Xiromero"
+									
+					]	
+				},
+				"Δασαρχείο Αγρινίου":{
+					"municipalities":[
+
+								"Agrinio",
+								"Thermo"
+				
+					
+					]	
+				},
+				"Δασαρχείο Μεσολογγίου":{
+					"municipalities":[
+					            "Messolonghi"								
+					]	
+				},
+				"Δασαρχείο Ναυπάκτου":{
+					"municipalities":[
+					            "Nafpaktia"								
+					]	
+				}
+			}
         },
         "Ilia": {
-          "municipalities": []
+			"fire_services":{
+				"Δασαρχείο Πύργου":{
+					"municipalities":[
+							"Πύργος"
+									
+					]	
+				},
+				"Δασαρχείο Ολυμπίας":{
+					"municipalities":[
+
+				
+					
+					]	
+				},
+				"Δασαρχείο Αμαλιάδας":{
+					"municipalities":[
+					         							
+					]	
+				}	
+				
+			}
         }
       },  
 	  
