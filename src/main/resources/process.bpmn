@@ -35,7 +35,7 @@
         <bpmn:flowNodeRef>SendMapToESKETask</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:userTask id="UpdateTheWebSiteTask" name="Ενημέρωση Ιστότοπου" camunda:assignee="DSAEE" camunda:candidateGroups="GrDSAEE">
+    <bpmn:userTask id="UpdateTheWebSiteTask" name="Update Web Site" camunda:assignee="DSAEE" camunda:candidateGroups="GrDSAEE">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="map_image">${map}</camunda:inputParameter>
@@ -76,14 +76,14 @@ execution.setVariable("_configuration", myConfigFile);</camunda:script>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_0abedys" sourceRef="Gateway_0phsra1" targetRef="UpdateTheWebSiteTask" />
     <bpmn:sequenceFlow id="Flow_10bjbpd" sourceRef="Gateway_0phsra1" targetRef="SendMapToESKETask" />
-    <bpmn:userTask id="UploadMapTask" name="Φόρτωση Χάρτη" camunda:formKey="embedded:app:forms/task-form-upload-map.html" camunda:assignee="DSAEE" camunda:candidateGroups="GrDSAEE">
+    <bpmn:userTask id="UploadMapTask" name="Upload Map" camunda:formKey="embedded:app:forms/task-form-upload-map.html" camunda:assignee="DSAEE" camunda:candidateGroups="GrDSAEE">
       <bpmn:incoming>Flow_1g4wsez</bpmn:incoming>
       <bpmn:outgoing>Flow_0zroomx</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0zroomx" sourceRef="UploadMapTask" targetRef="Gateway_0phsra1" />
     <bpmn:sequenceFlow id="Flow_1yot5ag" sourceRef="SendMapToESKETask" targetRef="ProcessEndedEndEvent" />
     <bpmn:sequenceFlow id="Flow_1g4wsez" sourceRef="ProcessStartedStartEvent" targetRef="UploadMapTask" />
-    <bpmn:scriptTask id="SendMapToESKETask" name="Αποστολή χάρτη στον ΕΣΚΕ" scriptFormat="javascript">
+    <bpmn:scriptTask id="SendMapToESKETask" name="Send Map to ESKE" scriptFormat="javascript">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="groupID">MapRecipients</camunda:inputParameter>
@@ -122,7 +122,7 @@ execution.getProcessEngineServices().getRuntimeService() 		.createMessageCorrela
       <bpmn:outgoing>Flow_0j4176e</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0janwkm" messageRef="Message_0o8xybe" />
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_0olh69l" name="Έλεγξε την προειδοποίηση" camunda:candidateGroups="Gr#{result.region_eng}#{organisation.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_0olh69l" name="Check Warning" camunda:candidateGroups="Gr#{result.region_eng}#{organisation.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_0ssmlfr" label="result" type="string" defaultValue="#{result}" />
@@ -139,7 +139,7 @@ execution.getProcessEngineServices().getRuntimeService() 		.createMessageCorrela
       <bpmn:outgoing>Flow_01l5nlo</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1l1brp2" messageRef="Message_0vhjqy5" />
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_04kkb2m" name="#{organisation}: Έλεγξε την προειδοποίηση" camunda:candidateGroups="Gr#{organisation}">
+    <bpmn:userTask id="Activity_04kkb2m" name="#{organisation}: Check Warning" camunda:candidateGroups="Gr#{organisation}">
       <bpmn:incoming>Flow_01l5nlo</bpmn:incoming>
       <bpmn:outgoing>Flow_0is8oks</bpmn:outgoing>
     </bpmn:userTask>
@@ -171,7 +171,7 @@ execution.getProcessEngineServices().getRuntimeService() 		.createMessageCorrela
       <bpmn:outgoing>Flow_0s9f5om</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1kovnuq" messageRef="Message_10sfrp2" />
     </bpmn:startEvent>
-    <bpmn:userTask id="Che" name="Έλεγξε την προειδοποίηση" camunda:assignee="Gr#{organisation}DecentralisedCP" camunda:candidateGroups="Gr#{organisation}DecentralisedCP">
+    <bpmn:userTask id="Che" name="Check Warning" camunda:assignee="Gr#{organisation}DecentralisedCP" camunda:candidateGroups="Gr#{organisation}DecentralisedCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_0637las" label="Περιφέρεια" type="string" defaultValue="#{result.region_eng}" />
@@ -289,7 +289,7 @@ execution.setVariable("four",four)</camunda:script>
       <bpmn:incoming>Flow_0s9f5om</bpmn:incoming>
       <bpmn:outgoing>Flow_10zixf5</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:callActivity id="Activity_16o3l89" name="Ειδοποίησε Δήμους" calledElement="IssueWarning">
+    <bpmn:callActivity id="Activity_16o3l89" name="Notify municipalities" calledElement="IssueWarning">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${municipalities}" target="result" />
         <camunda:in sourceExpression="ACTOR_TRANS_EWM_MUNICIPALITIES" target="message_name" />
@@ -383,7 +383,7 @@ execution.setVariable("departmentIdList", jsonValue);
         <bpmn:flowNodeRef>Activity_0m1q643</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:userTask id="InformPublicInRegionalLevelTask" name="Ενημέρωση του κοινού σε τοπικό επίπεδο" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
+    <bpmn:userTask id="InformPublicInRegionalLevelTask" name="Inform in local level" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_2epfli1" label="Επείγον σήμα" type="string" defaultValue="#{signal}" />
@@ -392,7 +392,7 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:incoming>Flow_1s6i6ia</bpmn:incoming>
       <bpmn:outgoing>Flow_1wjp4f6</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="PTask1" name="Ετοιμότητα του προσωπικού και μέσων για αντιπετώπιση αναγκών και διαχείριση συνεπειών" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
+    <bpmn:userTask id="PTask1" name="Readiness for consequences relief" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_0vh9fsp" label="Επείγον σήμα" type="string" defaultValue="#{signal}" />
@@ -401,7 +401,7 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:incoming>Flow_18c7ids</bpmn:incoming>
       <bpmn:outgoing>Flow_19p3qv7</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="PPTask" name="Ενημέρωση επαγγελματιών με ενασχόληση στην ύπαιθρο" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
+    <bpmn:userTask id="PPTask" name="Inform professionals working in the countryside" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_12d7uog" label="Επείγον σήμα" type="string" defaultValue="#{signal}" />
@@ -425,7 +425,7 @@ execution.setVariable("departmentIdList", jsonValue);
     <bpmn:sequenceFlow id="Flow_1rva8db" sourceRef="Gateway_1xajg61" targetRef="Activity_159epyi" />
     <bpmn:sequenceFlow id="Flow_0xjt14g" sourceRef="Activity_0bp6tzg" targetRef="Event_14wcs6j" />
     <bpmn:sequenceFlow id="Flow_0yw1oja" sourceRef="Activity_159epyi" targetRef="Event_14wcs6j" />
-    <bpmn:userTask id="Activity_159epyi" name="Ενημέρωση αρμόδιου αντιπεριφερειάρχη" camunda:candidateGroups="Gr#{result.region_name_camelCase}ViceGovernor">
+    <bpmn:userTask id="Activity_159epyi" name="Inform vice Regional Governor" camunda:candidateGroups="Gr#{result.region_name_camelCase}ViceGovernor">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_1beb0p8" label="Επείγον σήμα" type="string" defaultValue="#{signal}" />
@@ -444,15 +444,15 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:incoming>Flow_0xjt14g</bpmn:incoming>
       <bpmn:incoming>Flow_0yw1oja</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:subProcess id="Activity_0bp6tzg" name="Σύγκλιση ΣΟΠΠ">
+    <bpmn:subProcess id="Activity_0bp6tzg" name="Convention of SOPP">
       <bpmn:incoming>Flow_0898rvj</bpmn:incoming>
       <bpmn:outgoing>Flow_0xjt14g</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="${regional_units.prop(&#34;regional_units&#34;).elements()}" camunda:elementVariable="regional_unit" />
-      <bpmn:userTask id="Activity_0f5wd96" name="Εφαρμογή αποφάσεων ΣΟΠΠ" camunda:candidateGroups="Gr#{result.region_name_camelCase}#{regional_unit.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}ViceGovernor">
+      <bpmn:userTask id="Activity_0f5wd96" name="Apply decisions of SOPP" camunda:candidateGroups="Gr#{result.region_name_camelCase}#{regional_unit.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}ViceGovernor">
         <bpmn:incoming>Flow_0lep8d6</bpmn:incoming>
         <bpmn:outgoing>Flow_0iyoslc</bpmn:outgoing>
       </bpmn:userTask>
-      <bpmn:userTask id="Activity_1qpvepd" name="Σύγκληση  ΣΟΠΠ" camunda:candidateGroups="Gr#{result.region_name_camelCase}#{regional_unit.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}ViceGovernor">
+      <bpmn:userTask id="Activity_1qpvepd" name="Convention of SOPP" camunda:candidateGroups="Gr#{result.region_name_camelCase}#{regional_unit.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}ViceGovernor">
         <bpmn:incoming>Flow_1cvmjqk</bpmn:incoming>
         <bpmn:outgoing>Flow_0lep8d6</bpmn:outgoing>
       </bpmn:userTask>
@@ -465,7 +465,7 @@ execution.setVariable("departmentIdList", jsonValue);
         <bpmn:outgoing>Flow_1cvmjqk</bpmn:outgoing>
         <bpmn:outgoing>Flow_11r490f</bpmn:outgoing>
       </bpmn:exclusiveGateway>
-      <bpmn:userTask id="Activity_014ybvd" name="Πρέπει να συγκληθεί το ΣΟΠΠ?" camunda:formKey="embedded:app:forms/convocation-sapp.html" camunda:candidateGroups="Gr#{result.region_name_camelCase}#{regional_unit.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}ViceGovernor">
+      <bpmn:userTask id="Activity_014ybvd" name="Do we convene  SOPP?" camunda:formKey="embedded:app:forms/convocation-sapp.html" camunda:candidateGroups="Gr#{result.region_name_camelCase}#{regional_unit.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}ViceGovernor">
         <bpmn:extensionElements>
           <camunda:formData>
             <camunda:formField id="FormField_0570198" label="Επείγον σήμα" type="string" defaultValue="#{signal}" />
@@ -479,16 +479,16 @@ execution.setVariable("departmentIdList", jsonValue);
       </bpmn:startEvent>
       <bpmn:sequenceFlow id="Flow_0wzpx3i" sourceRef="Activity_014ybvd" targetRef="Gateway_1x419ib" />
       <bpmn:sequenceFlow id="Flow_0iyoslc" sourceRef="Activity_0f5wd96" targetRef="Event_1b90gf4" />
-      <bpmn:sequenceFlow id="Flow_1cvmjqk" name="Ναι" sourceRef="Gateway_1x419ib" targetRef="Activity_1qpvepd">
+      <bpmn:sequenceFlow id="Flow_1cvmjqk" name="Yes" sourceRef="Gateway_1x419ib" targetRef="Activity_1qpvepd">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{convocation}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="Flow_0lep8d6" sourceRef="Activity_1qpvepd" targetRef="Activity_0f5wd96" />
       <bpmn:sequenceFlow id="Flow_1wvfefo" sourceRef="Event_1vzf6x2" targetRef="Activity_014ybvd" />
-      <bpmn:sequenceFlow id="Flow_11r490f" name="Όχι" sourceRef="Gateway_1x419ib" targetRef="Event_1b90gf4">
+      <bpmn:sequenceFlow id="Flow_11r490f" name="No" sourceRef="Gateway_1x419ib" targetRef="Event_1b90gf4">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{convocation}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
     </bpmn:subProcess>
-    <bpmn:callActivity id="Activity_0pl595k" name="Ενημέρωση MME" calledElement="IssueWarning">
+    <bpmn:callActivity id="Activity_0pl595k" name="Inform new media" calledElement="IssueWarning">
       <bpmn:extensionElements>
         <camunda:in sourceExpression="${result}" target="result" />
         <camunda:in sourceExpression="2L_CP_CENTER_TRANS _DANG_MES_MEDIA" target="message_name" />
@@ -500,7 +500,7 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:outgoing>Flow_0euffaq</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="${departmentIdList.prop(&#34;values&#34;).elements()}" camunda:elementVariable="department" />
     </bpmn:callActivity>
-    <bpmn:userTask id="PTask" name="Ετοιμότητα του προσωπικού και μέσων για υποστήριξη ΠΣ" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
+    <bpmn:userTask id="PTask" name="Readiness and support Fire Service" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_3ktifb6" label="Επείγον σήμα" type="string" defaultValue="#{signal}" />
@@ -526,7 +526,7 @@ execution.setVariable("departmentIdList", jsonValue);
       <bpmn:outgoing>Flow_068te3k</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0g9ojdn" messageRef="Message_18dneye" />
     </bpmn:startEvent>
-    <bpmn:scriptTask id="Activity_0f4sj10" name="Βρες τις ΠΕ" scriptFormat="javascript">
+    <bpmn:scriptTask id="Activity_0f4sj10" name="Find Reginal Unit" scriptFormat="javascript">
       <bpmn:incoming>Flow_068te3k</bpmn:incoming>
       <bpmn:outgoing>Flow_1lm6oje</bpmn:outgoing>
       <bpmn:script>var result =execution.getVariable("result");
@@ -621,7 +621,7 @@ for(i = 0; i&lt;regional_units.length;i++)
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_1lm6oje" sourceRef="Activity_0f4sj10" targetRef="Activity_0tsftw8" />
     <bpmn:sequenceFlow id="Flow_1ucrvsb" sourceRef="Activity_0tsftw8" targetRef="Activity_0m1q643" />
-    <bpmn:scriptTask id="Activity_0tsftw8" name="Δημιουργία Σηματος" scriptFormat="javascript">
+    <bpmn:scriptTask id="Activity_0tsftw8" name="Create Warning Signal" scriptFormat="javascript">
       <bpmn:incoming>Flow_1lm6oje</bpmn:incoming>
       <bpmn:outgoing>Flow_1ucrvsb</bpmn:outgoing>
       <bpmn:script>var result =execution.getVariable("result");
@@ -669,7 +669,7 @@ execution.setVariable("signal",signal)
 
 </bpmn:script>
     </bpmn:scriptTask>
-    <bpmn:userTask id="Activity_0m1q643" name="Έλεγξε την προειδοποίηση" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
+    <bpmn:userTask id="Activity_0m1q643" name="Check Warning" camunda:candidateGroups="Gr#{result.region_name_camelCase}RegionalCP">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_04mdmr8" label="Περιφέρεια" type="string" defaultValue="#{result.region_eng}" />
@@ -684,12 +684,12 @@ execution.setVariable("signal",signal)
     </bpmn:userTask>
   </bpmn:process>
   <bpmn:process id="GR_NAT_CP_ESKE" isExecutable="true">
-    <bpmn:userTask id="ReviewRegionsTask" name="Επισκόπηση Αποτελεσμάτων χάρτη" camunda:formKey="embedded:app:forms/review-regions.html" camunda:candidateGroups="GrESKE">
+    <bpmn:userTask id="ReviewRegionsTask" name="Review Map resutls" camunda:formKey="embedded:app:forms/review-regions.html" camunda:candidateGroups="GrESKE">
       <bpmn:incoming>Flow_10tz9p1</bpmn:incoming>
       <bpmn:incoming>Flow_0lt0tgq</bpmn:incoming>
       <bpmn:outgoing>Flow_1lvpr8x</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="ProcessMapTask" name="Επεξεργασία Χάρτη" camunda:type="external" camunda:topic="process_map">
+    <bpmn:serviceTask id="ProcessMapTask" name="Process Map" camunda:type="external" camunda:topic="process_map">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="map_image">${map}</camunda:inputParameter>
@@ -698,7 +698,7 @@ execution.setVariable("signal",signal)
       <bpmn:incoming>Flow_0ag0suu</bpmn:incoming>
       <bpmn:outgoing>Flow_10tz9p1</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="EditRegionsTask" name="Επεξεργασία Αποτελεσμάτων χάρτη" camunda:formKey="embedded:app:forms/review-regions.html" camunda:assignee="ESKE" camunda:candidateGroups="GrESKE">
+    <bpmn:userTask id="EditRegionsTask" name="Review Map resutls" camunda:formKey="embedded:app:forms/review-regions.html" camunda:assignee="ESKE" camunda:candidateGroups="GrESKE">
       <bpmn:incoming>Flow_1on22v4</bpmn:incoming>
       <bpmn:outgoing>Flow_0lt0tgq</bpmn:outgoing>
     </bpmn:userTask>
@@ -709,7 +709,7 @@ execution.setVariable("signal",signal)
     <bpmn:sequenceFlow id="Flow_1lvpr8x" sourceRef="ReviewRegionsTask" targetRef="regions_approved" />
     <bpmn:sequenceFlow id="Flow_10tz9p1" sourceRef="ProcessMapTask" targetRef="ReviewRegionsTask" />
     <bpmn:sequenceFlow id="Flow_0lt0tgq" sourceRef="EditRegionsTask" targetRef="ReviewRegionsTask" />
-    <bpmn:sequenceFlow id="Flow_1on22v4" name="Όχι" sourceRef="regions_approved" targetRef="EditRegionsTask">
+    <bpmn:sequenceFlow id="Flow_1on22v4" name="No" sourceRef="regions_approved" targetRef="EditRegionsTask">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!approved}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0ft9kra" sourceRef="IssueWarningForFireServiceSubProcess" targetRef="Event_147x1or" />
@@ -911,7 +911,7 @@ execution.setVariable("decentralized",decentralized)
       <bpmn:outgoing>Flow_1on22v4</bpmn:outgoing>
       <bpmn:outgoing>Flow_1ratuqy</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1ratuqy" name="Ναι" sourceRef="regions_approved" targetRef="Gateway_1etpsdj">
+    <bpmn:sequenceFlow id="Flow_1ratuqy" name="Yes" sourceRef="regions_approved" targetRef="Gateway_1etpsdj">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{approved}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0se6o7f" sourceRef="Gateway_1etpsdj" targetRef="IssueWarningForFireServiceSubProcess" />
@@ -1006,7 +1006,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
     <bpmn:endEvent id="Event_1f0bhg8">
       <bpmn:incoming>Flow_0fgpisa</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_1jzp0an" name="Υποστήριξη στο έργο του ΠΣ" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_1jzp0an" name="Readiness and support  of Fire Servic" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_1t602da" label="Επείγον Σήμα" type="string" defaultValue="#{signal}" />
@@ -1015,7 +1015,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:incoming>Flow_1afadlk</bpmn:incoming>
       <bpmn:outgoing>Flow_0j4pajy</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_1i9gxue" name="Ενημέρωση του κοινού σε τοπικό επίπεδο" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_1i9gxue" name="Inform in local level" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_3ucr0lh" label="Επείγον Σήμα" type="string" defaultValue="#{signal}" />
@@ -1024,7 +1024,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:incoming>Flow_0qfjvdv</bpmn:incoming>
       <bpmn:outgoing>Flow_0m1en4t</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0utwrv3" name="Ετοιμότητα του προσωπικού και μέσων για αντιπετώπιση αναγκών και διαχείριση συνεπειών" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_0utwrv3" name="Readiness for consequences relief" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_0651d7m" label="Επείγον Σήμα" type="string" defaultValue="#{signal}" />
@@ -1033,7 +1033,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:incoming>Flow_0eycdd3</bpmn:incoming>
       <bpmn:outgoing>Flow_0fg72r4</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_03zth0t" name="Ενημέρωση επαγγελματιών με ενασχόληση στην ύπαιθρο" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_03zth0t" name="Inform professionals working in the countryside" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_1kle26u" label="Επείγον Σήμα" type="string" defaultValue="#{signal}" />
@@ -1046,11 +1046,11 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:incoming>Flow_0wiurqt</bpmn:incoming>
       <bpmn:incoming>Flow_0kdgdqg</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_1crqsxo" name="Εφαρμογή αποφάσεων ΣΤΟ" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_1crqsxo" name="Apply decision of STO" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:incoming>Flow_10mljox</bpmn:incoming>
       <bpmn:outgoing>Flow_0wiurqt</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_01tq2tr" name="Σύγκληση  ΣΤΟ" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_01tq2tr" name="Convention of STO" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:incoming>Flow_1nfvrkr</bpmn:incoming>
       <bpmn:outgoing>Flow_10mljox</bpmn:outgoing>
     </bpmn:userTask>
@@ -1059,7 +1059,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:outgoing>Flow_1nfvrkr</bpmn:outgoing>
       <bpmn:outgoing>Flow_0kdgdqg</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_1qnu16m" name="Πρέπει να συγκληθεί το ΣΤΟ?" camunda:formKey="embedded:app:forms/convocation-sapp.html" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_1qnu16m" name="Do we convene STO?" camunda:formKey="embedded:app:forms/convocation-sapp.html" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_1u5vpc6" label="Επείγον Σήμα" type="string" defaultValue="#{signal}" />
@@ -1069,11 +1069,11 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:outgoing>Flow_0txdta1</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0txdta1" sourceRef="Activity_1qnu16m" targetRef="Gateway_0m2p2vu" />
-    <bpmn:sequenceFlow id="Flow_0kdgdqg" name="Όχι" sourceRef="Gateway_0m2p2vu" targetRef="Event_1m22725">
+    <bpmn:sequenceFlow id="Flow_0kdgdqg" name="No" sourceRef="Gateway_0m2p2vu" targetRef="Event_1m22725">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{convocation}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0wiurqt" sourceRef="Activity_1crqsxo" targetRef="Event_1m22725" />
-    <bpmn:sequenceFlow id="Flow_1nfvrkr" name="Ναι" sourceRef="Gateway_0m2p2vu" targetRef="Activity_01tq2tr">
+    <bpmn:sequenceFlow id="Flow_1nfvrkr" name="Yes" sourceRef="Gateway_0m2p2vu" targetRef="Activity_01tq2tr">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{convocation}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_10mljox" sourceRef="Activity_01tq2tr" targetRef="Activity_1crqsxo" />
@@ -1087,7 +1087,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
     <bpmn:sequenceFlow id="Flow_0j4pajy" sourceRef="Activity_1jzp0an" targetRef="Event_1qtrl44" />
     <bpmn:sequenceFlow id="Flow_1afadlk" sourceRef="Gateway_0kjguol" targetRef="Activity_1jzp0an" />
     <bpmn:sequenceFlow id="Flow_0wcnmq1" sourceRef="Activity_17gtbq7" targetRef="Gateway_0kjguol" />
-    <bpmn:userTask id="Activity_17gtbq7" name="Έλεγξε την προειδοποίηση" camunda:assignee="demo" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
+    <bpmn:userTask id="Activity_17gtbq7" name="Check Warning" camunda:assignee="demo" camunda:candidateGroups="Gr#{region_name_camelCase}#{organisation_camelCase.toString().replaceAll(&#39;&#34;&#39;, &#39;&#39;)}">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="FormField_3sn3n6n" label="Επείγον Σήμα" type="string" defaultValue="#{signal}" />
@@ -1097,7 +1097,7 @@ execution.setVariable("region_name_camelCase",region_name_camelCase);</camunda:s
       <bpmn:outgoing>Flow_0wcnmq1</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1ds3gbj" sourceRef="Event_0kga48z" targetRef="Activity_0jxjmy7" />
-    <bpmn:scriptTask id="Activity_0jxjmy7" name="Δημιουργία Σήματος" scriptFormat="javascript">
+    <bpmn:scriptTask id="Activity_0jxjmy7" name="Create Warning Signal" scriptFormat="javascript">
       <bpmn:incoming>Flow_1ds3gbj</bpmn:incoming>
       <bpmn:outgoing>Flow_0wp65tg</bpmn:outgoing>
       <bpmn:script>var municipalities=execution.getVariable("result");
@@ -1412,7 +1412,7 @@ execution.setVariable("signal",signal)
         <di:waypoint x="1185" y="2290" />
         <di:waypoint x="1482" y="2290" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1326" y="2272" width="16" height="14" />
+          <dc:Bounds x="1327" y="2272" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1wvfefo_di" bpmnElement="Flow_1wvfefo">
@@ -1428,7 +1428,7 @@ execution.setVariable("signal",signal)
         <di:waypoint x="1160" y="2360" />
         <di:waypoint x="1200" y="2360" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1167" y="2335" width="17" height="14" />
+          <dc:Bounds x="1167" y="2335" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0iyoslc_di" bpmnElement="Flow_0iyoslc">
@@ -1503,7 +1503,7 @@ execution.setVariable("signal",signal)
         <di:waypoint x="765" y="900" />
         <di:waypoint x="815" y="900" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="782" y="882" width="17" height="14" />
+          <dc:Bounds x="782" y="882" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ag0suu_di" bpmnElement="Flow_0ag0suu">
@@ -1523,7 +1523,7 @@ execution.setVariable("signal",signal)
         <di:waypoint x="740" y="1040" />
         <di:waypoint x="670" y="1040" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="748" y="980" width="16" height="14" />
+          <dc:Bounds x="749" y="980" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0lt0tgq_di" bpmnElement="Flow_0lt0tgq">
@@ -1688,6 +1688,18 @@ execution.setVariable("signal",signal)
       <bpmndi:BPMNShape id="Participant_1542ehx_di" bpmnElement="Participant_1542ehx" isHorizontal="true">
         <dc:Bounds x="1690" y="1880" width="880" height="950" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0wp65tg_di" bpmnElement="Flow_0wp65tg">
+        <di:waypoint x="1880" y="2210" />
+        <di:waypoint x="1930" y="2210" />
+        <di:waypoint x="1930" y="2095" />
+        <di:waypoint x="1920" y="2095" />
+        <di:waypoint x="1920" y="2020" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ds3gbj_di" bpmnElement="Flow_1ds3gbj">
+        <di:waypoint x="1770" y="2028" />
+        <di:waypoint x="1770" y="2200" />
+        <di:waypoint x="1780" y="2200" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0wcnmq1_di" bpmnElement="Flow_0wcnmq1">
         <di:waypoint x="1950" y="1980" />
         <di:waypoint x="1973" y="1980" />
@@ -1742,7 +1754,7 @@ execution.setVariable("signal",signal)
         <di:waypoint x="2270" y="2475" />
         <di:waypoint x="2270" y="2550" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2277" y="2510" width="17" height="14" />
+          <dc:Bounds x="2277" y="2510" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0wiurqt_di" bpmnElement="Flow_0wiurqt">
@@ -1754,24 +1766,12 @@ execution.setVariable("signal",signal)
         <di:waypoint x="2295" y="2450" />
         <di:waypoint x="2472" y="2450" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2322" y="2432" width="16" height="14" />
+          <dc:Bounds x="2323" y="2432" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0txdta1_di" bpmnElement="Flow_0txdta1">
         <di:waypoint x="2190" y="2450" />
         <di:waypoint x="2245" y="2450" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1ds3gbj_di" bpmnElement="Flow_1ds3gbj">
-        <di:waypoint x="1770" y="2028" />
-        <di:waypoint x="1770" y="2200" />
-        <di:waypoint x="1780" y="2200" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0wp65tg_di" bpmnElement="Flow_0wp65tg">
-        <di:waypoint x="1880" y="2210" />
-        <di:waypoint x="1930" y="2210" />
-        <di:waypoint x="1930" y="2095" />
-        <di:waypoint x="1920" y="2095" />
-        <di:waypoint x="1920" y="2020" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1h8yexw_di" bpmnElement="Event_0kga48z">
         <dc:Bounds x="1752" y="1992" width="36" height="36" />
